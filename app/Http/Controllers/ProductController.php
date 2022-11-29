@@ -19,6 +19,13 @@ class ProductController extends Controller
     }
 
     public function store(Request $request) {
+        $request->validate([
+            'product_name'=>'required|max:15',
+            'product_code'=>'required|unique:products',
+            'product_details'=>'required',
+            'product_image'=>'required|mimes:jpg,jpeg,png'
+        ]);
+
         $product_name = $request->input('product_name');
         $product_code = $request->input('product_code');
         $product_details = $request->input('product_details');
@@ -57,6 +64,13 @@ class ProductController extends Controller
     }
 
     public function update(Request $request, $id) {
+        $request->validate([
+            'product_name'=>'required|max:15',
+            'product_code'=>'required|unique:products',
+            'product_details'=>'required',
+            'product_image'=>'mimes:jpg,jpeg,png'
+        ]);
+
         $product = Product::where('id', $id)->first();
 
         $old_image = $product->product_image;

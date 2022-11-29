@@ -7,6 +7,7 @@
 				<h2> Products List </h2>
 			</div>
 			<div class="col-2 d-flex justify-content-end pe-0">
+				<a class="btn btn-info me-1" href="{{ url('/') }}"> Home </a>
 				<a class="btn btn-success" href="{{ route('products.create') }}"> Add Product </a> 
 			</div>
 		</div>
@@ -16,6 +17,7 @@
 		<table class="table table-striped table-bordered">
 			<tr>
 				<th> S.No. </th>
+				<th> Category Name </th>
 				<th> Product Name </th>
 				<th> Product Code </th>
 				<th width="400"> Product Details </th>
@@ -30,6 +32,7 @@
 				@foreach($products as $product)
 					<tr>
 						<td> {{$product->id}} </td>
+						<td> {{$product->category->category_name}} </td>
 						<td> {{$product->product_name}} </td>
 						<td> {{$product->product_code}} </td>
 						<td> {{$product->product_details}} </td>
